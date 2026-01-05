@@ -62,7 +62,7 @@ public sealed class HttpClientOptions
     /// <summary>
     /// Gets or sets the base address of the <see cref="HttpClient"/> as a <see cref="Uri"/>.
     /// </summary>
-    public Uri? BaseAddressUri { get; set; }
+    public Uri? BaseAddress { get; set; }
 
     /// <summary>
     /// Gets or sets a custom <see cref="HttpClientHandler"/> to use instead of creating a new <see cref="SocketsHttpHandler"/>.
