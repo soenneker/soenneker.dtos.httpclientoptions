@@ -8,9 +8,9 @@ using System.Threading.Tasks;
 namespace Soenneker.Dtos.HttpClientOptions;
 
 /// <summary>
-/// A record DTO type for common HttpClient options functionality
+/// A DTO type for common HttpClient options functionality
 /// </summary>
-public record HttpClientOptions
+public sealed class HttpClientOptions
 {
     /// <summary>
     /// Gets or sets the maximum lifetime of a connection in the connection pool before it is discarded.
@@ -35,11 +35,17 @@ public record HttpClientOptions
 
     /// <summary>
     /// Gets or sets the time to wait before the request times out.
-    /// This value is also used for the connection timeout (<see cref="SocketsHttpHandler.ConnectTimeout"/>).
-    /// A value of <see langword="null"/> indicates that the default timeout will be used.
+    /// This is the overall <see cref="HttpClient.Timeout"/> (request timeout), not the connect timeout.
     /// Default when null: 100 seconds. Framework default: 100 seconds.
     /// </summary>
     public TimeSpan? Timeout { get; set; }
+
+    /// <summary>
+    /// Gets or sets the time to wait when establishing a TCP connection.
+    /// This maps to <see cref="SocketsHttpHandler.ConnectTimeout"/>.
+    /// A value of <see langword="null"/> indicates that the framework default will be used (typically Infinite).
+    /// </summary>
+    public TimeSpan? ConnectTimeout { get; set; }
 
     /// <summary>
     /// Gets or sets a collection of default headers to be included with each request.
@@ -52,12 +58,11 @@ public record HttpClientOptions
     /// This function is only executed during the first retrieval of the client.
     /// </summary>
     public Func<HttpClient, ValueTask>? ModifyClient { get; set; }
-
+    
     /// <summary>
-    /// Gets or sets the base address of the <see cref="HttpClient"/> as a string.
-    /// A value of <see langword="null"/> indicates that no base address will be set.
+    /// Gets or sets the base address of the <see cref="HttpClient"/> as a <see cref="Uri"/>.
     /// </summary>
-    public string? BaseAddress { get; set; }
+    public Uri? BaseAddressUri { get; set; }
 
     /// <summary>
     /// Gets or sets a custom <see cref="HttpClientHandler"/> to use instead of creating a new <see cref="SocketsHttpHandler"/>.
