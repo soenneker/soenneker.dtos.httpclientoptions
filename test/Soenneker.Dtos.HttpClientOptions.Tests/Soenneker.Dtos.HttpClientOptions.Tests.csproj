@@ -15,7 +15,7 @@
     </ItemGroup>
 
     <ItemGroup>
-        <ProjectReference Include="..\..\src\Soenneker.Dtos.HttpClientOptions.csproj" />
+        <ProjectReference Include="..\..\src\Soenneker.Dtos.HttpClientOptions\Soenneker.Dtos.HttpClientOptions.csproj" />
     </ItemGroup>
 
     <ItemGroup>
