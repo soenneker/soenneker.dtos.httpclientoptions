@@ -1,11 +1,10 @@
-﻿using Soenneker.Tests.Unit;
-using Xunit;
+using Soenneker.Tests.Unit;
 
 namespace Soenneker.Dtos.HttpClientOptions.Tests;
 
 public sealed class HttpClientOptionsTests : UnitTest
 {
-    [Fact]
+    [Test]
     public void Default()
     {
 
