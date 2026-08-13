@@ -65,11 +65,11 @@ public sealed class HttpClientOptions
     public Uri? BaseAddress { get; set; }
 
     /// <summary>
-    /// Gets or sets a custom <see cref="HttpClientHandler"/> to use instead of creating a new <see cref="SocketsHttpHandler"/>.
-    /// When this is set, all other handler-specific options are ignored and this handler is used directly.
-    /// A value of <see langword="null"/> indicates that a <see cref="SocketsHttpHandler"/> will be created with the configured options.
+    /// Gets or sets an action that customizes a cache-created and cache-owned <see cref="SocketsHttpHandler"/>.
+    /// Setting this creates a dedicated transport for the cached client rather than using a shared transport.
+    /// The action runs after all other handler-specific options have been applied.
     /// </summary>
-    public HttpClientHandler? HttpClientHandler { get; set; }
+    public Action<SocketsHttpHandler>? ModifyPrimaryHandler { get; set; }
 
     /// <summary>
     /// Gets or sets factories for handlers that decorate the cache-owned transport handler.
