@@ -72,6 +72,13 @@ public sealed class HttpClientOptions
     public HttpClientHandler? HttpClientHandler { get; set; }
 
     /// <summary>
+    /// Gets or sets factories for handlers that decorate the cache-owned transport handler.
+    /// Factories are invoked once when the cached client is created. The first factory produces the outermost handler.
+    /// The returned handlers must not have <see cref="DelegatingHandler.InnerHandler"/> set and are owned by the cache.
+    /// </summary>
+    public List<Func<DelegatingHandler>>? DelegatingHandlerFactories { get; set; }
+
+    /// <summary>
     /// Gets or sets the timeout when draining response content.
     /// A value of <see langword="null"/> indicates that the default timeout will be used.
     /// Default when null: 2 seconds. Framework default: 2 seconds.
