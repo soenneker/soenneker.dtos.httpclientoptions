@@ -3,11 +3,43 @@
 [![](https://img.shields.io/nuget/dt/soenneker.dtos.httpclientoptions.svg?style=for-the-badge)](https://www.nuget.org/packages/soenneker.dtos.httpclientoptions/)
 [![](https://img.shields.io/github/actions/workflow/status/soenneker/soenneker.dtos.httpclientoptions/codeql.yml?label=CodeQL&style=for-the-badge)](https://github.com/soenneker/soenneker.dtos.httpclientoptions/actions/workflows/codeql.yml)
 
-# ![](https://user-images.githubusercontent.com/4441470/224455560-91ed3ee7-f510-4041-a8d2-3fc093025112.png) Soenneker.Dtos.HttpClientOptions
-### A record DTO type for common HttpClient options functionality
+# Soenneker.Dtos.HttpClientOptions
 
-## Installation
+A DTO type for common HttpClient options functionality.
 
-```
+## Install
+
+```bash
 dotnet add package Soenneker.Dtos.HttpClientOptions
 ```
+
+## What you get
+
+- `HttpClientOptions` — A DTO type for common HttpClient options functionality.
+
+## API at a glance
+
+| API | What it does | Result / important behavior |
+| --- | --- | --- |
+| `HttpClientOptions.PooledConnectionLifetime` | Gets or sets the maximum lifetime of a connection in the connection pool before it is discarded. A value of `null` indicates that the connection will not have a limited lifetime. Default when null: 600 seconds (10 minutes). Framework default: infinite (no limit). | Gets or sets the maximum lifetime of a connection in the connection pool before it is discarded. A value of `null` indicates that the connection will not have a limited lifetime. Default when null: 600 seconds (10 minutes). Framework default: infinite (no limit). |
+| `HttpClientOptions.UseCookieContainer` | Gets or sets a value indicating whether the `HttpClient` should use a cookie container to store and manage cookies. A value of `null` indicates that the default behavior of the client will be used. Default when null: `false`. Framework default: `false`. | Gets or sets a value indicating whether the `HttpClient` should use a cookie container to store and manage cookies. A value of `null` indicates that the default behavior of the client will be used. Default when null: `false`. Framework default: `false`. |
+| `HttpClientOptions.MaxConnectionsPerServer` | Gets or sets the maximum number of concurrent connections allowed per server. A value of `null` indicates that the default value will be used. Default when null: 40. Framework default: `int.MaxValue`. | Gets or sets the maximum number of concurrent connections allowed per server. A value of `null` indicates that the default value will be used. Default when null: 40. Framework default: `int.MaxValue`. |
+| `HttpClientOptions.Timeout` | Gets or sets the time to wait before the request times out. This is the overall `HttpClient.Timeout` (request timeout), not the connect timeout. Default when null: 100 seconds. Framework default: 100 seconds. | Gets or sets the time to wait before the request times out. This is the overall `HttpClient.Timeout` (request timeout), not the connect timeout. Default when null: 100 seconds. Framework default: 100 seconds. |
+| `HttpClientOptions.ConnectTimeout` | Gets or sets the time to wait when establishing a TCP connection. This maps to `SocketsHttpHandler.ConnectTimeout`. A value of `null` indicates that the framework default will be used (typically Infinite). | Gets or sets the time to wait when establishing a TCP connection. This maps to `SocketsHttpHandler.ConnectTimeout`. A value of `null` indicates that the framework default will be used (typically Infinite). |
+| `HttpClientOptions.DefaultRequestHeaders` | Gets or sets a collection of default headers to be included with each request. A value of `null` indicates that no default headers will be added. | Gets or sets a collection of default headers to be included with each request. A value of `null` indicates that no default headers will be added. |
+| `HttpClientOptions.ModifyClient` | Gets or sets a function to modify the `HttpClient` after it has been created. This function is only executed during the first retrieval of the client. | Gets or sets a function to modify the `HttpClient` after it has been created. This function is only executed during the first retrieval of the client. |
+| `HttpClientOptions.BaseAddress` | Gets or sets the base address of the `HttpClient` as a `Uri`. | Gets or sets the base address of the `HttpClient` as a `Uri`. |
+| `HttpClientOptions.ModifyPrimaryHandler` | Gets or sets an action that customizes a cache-created and cache-owned `SocketsHttpHandler`. Setting this creates a dedicated transport for the cached client rather than using a shared transport. The action runs after all other handler-specific options have been applied. | Gets or sets an action that customizes a cache-created and cache-owned `SocketsHttpHandler`. Setting this creates a dedicated transport for the cached client rather than using a shared transport. The action runs after all other handler-specific options have been applied. |
+| `HttpClientOptions.DelegatingHandlerFactories` | Gets or sets factories for handlers that decorate the cache-owned transport handler. Factories are invoked once when the cached client is created. The first factory produces the outermost handler. The returned handlers must not have `DelegatingHandler.InnerHandler` set and are owned by the cache. | Gets or sets factories for handlers that decorate the cache-owned transport handler. Factories are invoked once when the cached client is created. The first factory produces the outermost handler. The returned handlers must not have `DelegatingHandler.InnerHandler` set and are owned by the cache. |
+| `HttpClientOptions.ResponseDrainTimeout` | Gets or sets the timeout when draining response content. A value of `null` indicates that the default timeout will be used. Default when null: 2 seconds. Framework default: 2 seconds. | Gets or sets the timeout when draining response content. A value of `null` indicates that the default timeout will be used. Default when null: 2 seconds. Framework default: 2 seconds. |
+| `HttpClientOptions.AllowAutoRedirect` | Gets or sets a value indicating whether the handler should automatically follow redirect responses. A value of `null` indicates that the default behavior will be used. Default when null: `true`. Framework default: `true`. | Gets or sets a value indicating whether the handler should automatically follow redirect responses. A value of `null` indicates that the default behavior will be used. Default when null: `true`. Framework default: `true`. |
+| `HttpClientOptions.AutomaticDecompression` | Gets or sets the automatic decompression method for response content. A value of `null` indicates that the default behavior will be used. Default when null: `DecompressionMethods.None`. Framework default: `DecompressionMethods.None`. | Gets or sets the automatic decompression method for response content. A value of `null` indicates that the default behavior will be used. Default when null: `DecompressionMethods.None`. Framework default: `DecompressionMethods.None`. |
+| `HttpClientOptions.KeepAlivePingDelay` | Gets or sets the delay between keep-alive pings. A value of `null` indicates that the default delay will be used. Default when null: Infinite (no keep-alive pings). Framework default: Infinite. | Gets or sets the delay between keep-alive pings. A value of `null` indicates that the default delay will be used. Default when null: Infinite (no keep-alive pings). Framework default: Infinite. |
+| `HttpClientOptions.KeepAlivePingTimeout` | Gets or sets the timeout for keep-alive pings. A value of `null` indicates that the default timeout will be used. Default when null: 20 seconds. Framework default: 20 seconds. | Gets or sets the timeout for keep-alive pings. A value of `null` indicates that the default timeout will be used. Default when null: 20 seconds. Framework default: 20 seconds. |
+| `HttpClientOptions.KeepAlivePingPolicy` | Gets or sets the keep-alive ping policy. A value of `null` indicates that the default policy will be used. Default when null: `HttpKeepAlivePingPolicy.Always`. Framework default: `HttpKeepAlivePingPolicy.Always`. | Gets or sets the keep-alive ping policy. A value of `null` indicates that the default policy will be used. Default when null: `HttpKeepAlivePingPolicy.Always`. Framework default: `HttpKeepAlivePingPolicy.Always`. |
+| `HttpClientOptions.UseProxy` | Gets or sets a value indicating whether the handler should use a proxy. A value of `null` indicates that the default behavior will be used. Default when null: `true`. Framework default: `true`. | Gets or sets a value indicating whether the handler should use a proxy. A value of `null` indicates that the default behavior will be used. Default when null: `true`. Framework default: `true`. |
+| `HttpClientOptions.Proxy` | Gets or sets the proxy to use for requests. A value of `null` indicates that the default proxy will be used. Default when null: System proxy (from `HttpClient.DefaultProxy`). Framework default: System proxy. | Gets or sets the proxy to use for requests. A value of `null` indicates that the default proxy will be used. Default when null: System proxy (from `HttpClient.DefaultProxy`). Framework default: System proxy. |
+
+## Practical notes
+
+- Calls that return a cached or singleton value reuse the same instance until the owning service is disposed.
