@@ -8,21 +8,19 @@ using System.Threading.Tasks;
 namespace Soenneker.Dtos.HttpClientOptions;
 
 /// <summary>
-/// A DTO type for common HttpClient options functionality
+/// Describes HTTP client and transport settings consumed by the Soenneker HTTP client cache.
 /// </summary>
 public sealed class HttpClientOptions
 {
     /// <summary>
     /// Gets or sets the maximum lifetime of a connection in the connection pool before it is discarded.
-    /// A value of <see langword="null"/> indicates that the connection will not have a limited lifetime.
-    /// Default when null: 600 seconds (10 minutes). Framework default: infinite (no limit).
+    /// The Soenneker HTTP client cache uses 10 minutes when this value is <see langword="null"/>.
     /// </summary>
     public TimeSpan? PooledConnectionLifetime { get; set; }
 
     /// <summary>
     /// Gets or sets a value indicating whether the <see cref="HttpClient"/> should use a cookie container to store and manage cookies.
-    /// A value of <see langword="null"/> indicates that the default behavior of the client will be used.
-    /// Default when null: <see langword="false"/>. Framework default: <see langword="false"/>.
+    /// The Soenneker HTTP client cache disables cookies when this value is not <see langword="true"/>.
     /// </summary>
     public bool? UseCookieContainer { get; set; }
 
@@ -43,7 +41,7 @@ public sealed class HttpClientOptions
     /// <summary>
     /// Gets or sets the time to wait when establishing a TCP connection.
     /// This maps to <see cref="SocketsHttpHandler.ConnectTimeout"/>.
-    /// A value of <see langword="null"/> indicates that the framework default will be used (typically Infinite).
+    /// The Soenneker HTTP client cache uses 100 seconds when this value is <see langword="null"/>.
     /// </summary>
     public TimeSpan? ConnectTimeout { get; set; }
 
@@ -142,9 +140,8 @@ public sealed class HttpClientOptions
     public int? MaxResponseDrainSize { get; set; }
 
     /// <summary>
-    /// Gets or sets the maximum length of response headers.
-    /// A value of <see langword="null"/> indicates that the default length will be used.
-    /// Default when null: 65,536 bytes (64 KB). Framework default: 65,536 bytes (64 KB).
+    /// Gets or sets the maximum response-header length in kilobytes.
+    /// A value of <see langword="null"/> leaves the handler default unchanged. The framework default is 64 KB.
     /// </summary>
     public int? MaxResponseHeadersLength { get; set; }
 
